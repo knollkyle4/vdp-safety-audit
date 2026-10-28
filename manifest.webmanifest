@@ -1,0 +1,19 @@
+{
+  "name": "VDP Safety Audit",
+  "short_name": "VDP Safety",
+  "description": "Volleman Dairy Processing weekly safety audit app",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fa",
+  "theme_color": "#0b3a66",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
