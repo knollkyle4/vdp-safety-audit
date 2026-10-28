@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="92" fill="#0b3a66"/>
+  <path d="M256 78l132 48v101c0 91-54 166-132 207-78-41-132-116-132-207V126l132-48z" fill="#ffffff" opacity=".98"/>
+  <path d="M210 258l31 31 67-74" fill="none" stroke="#0b3a66" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="256" y="385" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="58" font-weight="700" fill="#0b3a66">VDP</text>
+</svg>
