@@ -148,11 +148,26 @@ function buildSlides_(payload, score, baseName, folder) {
   return pres;
 }
 
+function testGenerateReports() {
+  const folder = DriveApp.getFolderById(DESTINATION_FOLDER_ID);
+  const payload = {
+    weekEnding: '2026-10-23-TEST',
+    findings: [
+      {area:'Processing',desc:'Test safety finding',category:'SW',level:'NC',repeat:false,notes:'',photos:[]},
+      {area:'Warehouse',desc:'Test needs improvement finding',category:'HH',level:'NI',repeat:false,notes:'',photos:[]}
+    ]
+  };
+  const score = score_(payload.findings);
+  const baseName = 'VDP Safety Audit - TEST';
+  buildSummaryDoc_(payload, score, baseName, folder);
+  buildSlides_(payload, score, baseName, folder);
+}
+
 function primaryFocus_(findings){const nc=[...new Set(findings.filter(f=>f.level==='NC').map(f=>f.area))];return nc.length?'Priority attention: '+nc.join(', ')+'. Restore failed controls, safe access, and significant injury exposures first.':'No NC findings. Focus on closing NI items before they repeat.';}
 function styleHeader_(table,rowIndex){const row=table.getRow(rowIndex);for(let i=0;i<row.getNumCells();i++){row.getCell(i).setBackgroundColor('#0B3A66');row.getCell(i).editAsText().setForegroundColor('#FFFFFF').setBold(true);}}
-function titleBar_(slide,title){const s=slide.insertShape(SlidesApp.ShapeType.RECTANGLE,0,0,720,68);s.getFill().setSolidFill('#0B3A66');s.getLine().setTransparent();text_(slide,title,38,17,560,36,23,true,'#FFFFFF');}
+function titleBar_(slide,title){const s=slide.insertShape(SlidesApp.ShapeType.RECTANGLE,0,0,720,68);s.getFill().setSolidFill('#0B3A66');s.getBorder().setTransparent();text_(slide,title,38,17,560,36,23,true,'#FFFFFF');}
 function bullets_(slide,items,x,y,w,h){const b=slide.insertTextBox(items.map(s=>'• '+s).join('\n'),x,y,w,h);b.getText().getTextStyle().setFontSize(15).setForegroundColor('#1F2937');}
-function box_(slide,x,y,w,h,fill){const s=slide.insertShape(SlidesApp.ShapeType.ROUND_RECTANGLE,x,y,w,h);s.getFill().setSolidFill(fill);s.getLine().setTransparent();return s;}
-function text_(slide,text,x,y,w,h,size,bold,color,fill){let b;if(fill){b=slide.insertShape(SlidesApp.ShapeType.ROUND_RECTANGLE,x,y,w,h);b.getFill().setSolidFill(fill);b.getLine().setTransparent();b.getText().setText(text);}else b=slide.insertTextBox(text,x,y,w,h);b.getText().getTextStyle().setFontSize(size).setBold(!!bold).setForegroundColor(color||'#1F2937');return b;}
+function box_(slide,x,y,w,h,fill){const s=slide.insertShape(SlidesApp.ShapeType.ROUND_RECTANGLE,x,y,w,h);s.getFill().setSolidFill(fill);s.getBorder().setTransparent();return s;}
+function text_(slide,text,x,y,w,h,size,bold,color,fill){let b;if(fill){b=slide.insertShape(SlidesApp.ShapeType.ROUND_RECTANGLE,x,y,w,h);b.getFill().setSolidFill(fill);b.getBorder().setTransparent();b.getText().setText(text);}else b=slide.insertTextBox(text,x,y,w,h);b.getText().getTextStyle().setFontSize(size).setBold(!!bold).setForegroundColor(color||'#1F2937');return b;}
 function dataUrlToBlob_(dataUrl,name){const parts=dataUrl.split(',');const mime=(parts[0].match(/data:(.*?);base64/)||[])[1]||'image/jpeg';return Utilities.newBlob(Utilities.base64Decode(parts[1]),mime,name);}
 function json_(obj){return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(ContentService.MimeType.JSON);}
