@@ -1,4 +1,9 @@
 const DESTINATION_FOLDER_ID = '1uB_EJHbK7ytV5bTLqeFfBZeK90dNiSEv';
+
+function doGet() {
+  return ContentService.createTextOutput('VDP Safety Audit receiver is active.');
+}
+
 function doPost(e) {
   try {
     const payload = JSON.parse((e && e.postData && e.postData.contents) || '{}');
