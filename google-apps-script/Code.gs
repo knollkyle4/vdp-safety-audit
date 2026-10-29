@@ -1,4 +1,4 @@
-const DESTINATION_FOLDER_ID = '1ZZ-zfubeyNITNoHS_w7GfB4a2zxVT2yX';
+const DESTINATION_FOLDER_ID = '1uB_EJHbK7ytV5bTLqeFfBZeK90dNiSEv';
 
 function doPost(e) {
   try {
